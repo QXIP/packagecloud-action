@@ -1,5 +1,6 @@
 # action.yml
 name: 'PackageCloud-Push'
+icon: arrow-up
 description: 'Push packages to PackageCloud via the package_cloud gem.'
 inputs:
   repo:
