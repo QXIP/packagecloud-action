@@ -1,0 +1,31 @@
+# action.yml
+name: 'PackageCloud-Push'
+description: 'Push packages to PackageCloud via the package_cloud gem.'
+inputs:
+  repo:
+    description: 'PackageCloud repo name to use'
+    required: true
+  dir:
+    description: 'base directory where packages are'
+    required: true
+  rpmvers:
+    description: 'RPM based distros to push packages for (space-separated)'
+    required: true
+    default: 'rpm_any/rpm_any'
+  debvers:
+    description: 'Debian based distros to push packages for (space-separated)'
+    required: true
+    default: 'any/any'
+outputs:
+  rpmout:
+    description: 'Output from rpm uploads'
+  debout:
+    description: 'Output from deb uploads'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.repo }}
+    - ${{ inputs.dir }}
+    - ${{ inputs.debvers }}
+    - ${{ inputs.rpmvers }}
